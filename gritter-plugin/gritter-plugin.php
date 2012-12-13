@@ -280,6 +280,20 @@ if (!class_exists('gritter')) {
          * Outputs the footer.
          */
         private function __output_footer() {
+            echo '<br /><br />';
+            echo 'If you find my work useful, please donate:';
+            echo '<form action="https://www.paypal.com/cgi-bin/webscr" method="post">';
+            echo '<input type="hidden" name="cmd" value="_donations">';
+            echo '<input type="hidden" name="business" value="feranx@gmx.de">';
+            echo '<input type="hidden" name="lc" value="DE">';
+            echo '<input type="hidden" name="item_name" value="Gritter">';
+            echo '<input type="hidden" name="no_note" value="0">';
+            echo '<input type="hidden" name="currency_code" value="EUR">';
+            echo '<input type="hidden" name="bn" value="PP-DonationsBF:btn_donateCC_LG.gif:NonHostedGuest">';
+            echo '<input type="image" src="https://www.paypalobjects.com/de_DE/DE/i/btn/btn_donateCC_LG.gif" border="0" name="submit" alt="Jetzt einfach, schnell und sicher online bezahlen – mit PayPal.">';
+            echo '<img alt="" border="0" src="https://www.paypalobjects.com/de_DE/i/scr/pixel.gif" width="1" height="1">';
+            echo '</form>';
+
             echo "<br /><br />Version " . GRITTER_VERSION;
             echo '</div>';
         }
