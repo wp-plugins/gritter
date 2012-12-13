@@ -1,7 +1,7 @@
 === Gritter Social Influence ===
 Contributors: markjaquith, mdawaffe (this should be a list of wordpress.org userid's)
 Donate link: http://www.jordan-code.de/gritter
-Tags: gritter layer admin social influence jquery gritter
+Tags: gritter layer admin social influence jquery
 Requires at least: 3.0.1
 Tested up to: 3.5
 Stable tag: 0.1
