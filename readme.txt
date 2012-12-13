@@ -12,6 +12,9 @@ With this plugin you can add social influence layers to your website.
 
 == Description ==
 With this plugin you can add social influence layers to your website.
+
+You can find an example at http://www.teamgeist.com
+
 The gritter plugin lets you define new layer and groups to be displayed with the jquery gritter plugin of
 http://boedesign.com/blog/2009/07/11/growl-for-jquery-gritter/
 or
