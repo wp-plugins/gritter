@@ -8,7 +8,7 @@
 //  License: GPLv2 or later
 //  License URI: http://www.gnu.org/licenses/gpl-2.0.html
 define('GRITTER_VERSION', '0.1');
-define('GRITTER_PLUGIN_URL', WP_PLUGIN_DIR . '/gritter-plugin/');
+define('GRITTER_PLUGIN_URL', WP_PLUGIN_DIR . '/gritter/');
 define('GRITTER_REQUIRED_WP_VERSION', '3.4.0');
 define('GRITTER_OPTION_NAME', 'gritter-plugin.settings');
 if (!class_exists('gritter')) {
@@ -80,9 +80,9 @@ if (!class_exists('gritter')) {
          * @return none
          */
         function load_custom_script() {
-            wp_register_script('gritter', '/' . PLUGINDIR . '/' . 'gritter-plugin' . '/' . 'js' . '/' . 'gritter.min.js');
+            wp_register_script('gritter', '/' . PLUGINDIR . '/' . 'gritter' . '/' . 'js' . '/' . 'gritter.min.js');
             wp_enqueue_script('gritter');
-            wp_register_style('gritter', '/' . PLUGINDIR . '/' . 'gritter-plugin' . '/' . 'css' . '/' . 'jquery.gritter.css');
+            wp_register_style('gritter', '/' . PLUGINDIR . '/' . 'gritter' . '/' . 'css' . '/' . 'jquery.gritter.css');
             wp_enqueue_style('gritter');
         }
 
