@@ -8,7 +8,8 @@
 //  License: GPLv2 or later
 //  License URI: http://www.gnu.org/licenses/gpl-2.0.html
 define('GRITTER_VERSION', '0.1');
-define('GRITTER_PLUGIN_URL', WP_PLUGIN_DIR . '/gritter/');
+define('GRITTER_PLUGIN_PATH', plugin_dir_path(__FILE__));
+define('GRITTER_PLUGIN_URL', plugin_dir_url(__FILE__));
 define('GRITTER_REQUIRED_WP_VERSION', '3.4.0');
 define('GRITTER_OPTION_NAME', 'gritter-plugin.settings');
 if (!class_exists('gritter')) {
@@ -80,9 +81,9 @@ if (!class_exists('gritter')) {
          * @return none
          */
         function load_custom_script() {
-            wp_register_script('gritter', '/' . PLUGINDIR . '/' . 'gritter' . '/' . 'js' . '/' . 'gritter.min.js');
+            wp_register_script('gritter', GRITTER_PLUGIN_URL . 'js' . '/' . 'gritter.min.js');
             wp_enqueue_script('gritter');
-            wp_register_style('gritter', '/' . PLUGINDIR . '/' . 'gritter' . '/' . 'css' . '/' . 'jquery.gritter.css');
+            wp_register_style('gritter', GRITTER_PLUGIN_URL  . 'css' . '/' . 'jquery.gritter.css');
             wp_enqueue_style('gritter');
         }
 
@@ -776,11 +777,11 @@ if (!class_exists('gritter')) {
             );
             $this->__output_header('Gritter - Gruppen  <a class="add-new-h2" href="./options-general.php?page=gritter&plugin_page=groups&action=new">Erstellen</a> <a class="add-new-h2" href="./options-general.php?page=gritter">Zur&uuml;ck</a>', TRUE);
             if (!class_exists('Gritter_Plugin_Table')) {
-                require_once( GRITTER_PLUGIN_URL . 'gritter-plugin-table.php' );
+                require_once( GRITTER_PLUGIN_PATH . 'gritter-plugin-table.php' );
             }
             //Prepare Table of elements
             if (!class_exists('Gritter_Plugin_Table')) {
-                require_once( GRITTER_PLUGIN_URL . 'gritter-plugin-table.php' );
+                require_once( GRITTER_PLUGIN_PATH . 'gritter-plugin-table.php' );
             }
             $wp_list_table = new Gritter_Plugin_Table();
             $wp_list_table->setOption('group');
@@ -930,7 +931,7 @@ if (!class_exists('gritter')) {
                 }
             }
             if (!class_exists('Gritter_Plugin_Table')) {
-                require_once( GRITTER_PLUGIN_URL . 'gritter-plugin-table.php' );
+                require_once( GRITTER_PLUGIN_PATH . 'gritter-plugin-table.php' );
             }
             //Prepare Table of elements
             $wp_list_table = new Gritter_Plugin_Table();
@@ -1056,7 +1057,7 @@ if (!class_exists('gritter')) {
                 if (preg_match('~(\[CITY\])~', $value, $matches)) {
 //                    $tags = get_meta_tags('http://www.geobytes.com/IpLocator.htm?GetLocation&template=php3.txt&IpAddress=' . $_SERVER['REMOVE_ADDR']);
                     if (!class_exists('Gritter_Plugin_Cities')) {
-                        require_once( GRITTER_PLUGIN_URL . 'gritter-plugin-cities.php' );
+                        require_once( GRITTER_PLUGIN_PATH . 'gritter-plugin-cities.php' );
                     }
                     $gritter_city = new Gritter_Plugin_Cities(true);
                     $value = str_replace($matches[0], $gritter_city->city, $value);
