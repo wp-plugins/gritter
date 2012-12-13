@@ -4,6 +4,7 @@ Plugin Name: Gritter Social Influence
 Plugin URI: http://www.jordan-code.de
 Description: Dieses Plugin stellt angepasste Gritter Funktionalitaeten bereit.
 Author: Felix Jordan
+Author URI: http://www.jordan-code.de
 Version: 0.11
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
