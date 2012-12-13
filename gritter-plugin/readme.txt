@@ -1,16 +1,17 @@
-=== Plugin Name ===
+=== Gritter Social Influence ===
 Contributors: markjaquith, mdawaffe (this should be a list of wordpress.org userid's)
 Donate link: http://www.jordan-code.de/gritter
-Tags: gritter layer admin
+Tags: gritter layer admin social influence jquery gritter
 Requires at least: 3.0.1
 Tested up to: 3.5
 Stable tag: 0.1
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
-The gritter plugin lets you define new layer and groups to be displayed with the jquery gritter plugin.
+With this plugin you can add social influence layers to your website.
 
 == Description ==
+With this plugin you can add social influence layers to your website.
 The gritter plugin lets you define new layer and groups to be displayed with the jquery gritter plugin of
 http://boedesign.com/blog/2009/07/11/growl-for-jquery-gritter/
 or
@@ -70,10 +71,6 @@ This section describes how to install the plugin and get it working.
 3. All done, now you have a link under 'Settings' called 'Gritter'.
 
 == Frequently Asked Questions ==
-
-= A question that someone might have =
-
-An answer to that question.
 
 = Whats about to configure gritter? =
 
