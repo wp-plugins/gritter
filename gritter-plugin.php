@@ -4,10 +4,10 @@
 //  Plugin URI: http://www.jordan-code.de
 //  Description: Dieses Plugin stellt angepasste Gritter Funktionalitaeten bereit.
 //  Author: Felix Jordan
-//  Version: 0.1
+//  Version: 0.11
 //  License: GPLv2 or later
 //  License URI: http://www.gnu.org/licenses/gpl-2.0.html
-define('GRITTER_VERSION', '0.1');
+define('GRITTER_VERSION', '0.11');
 define('GRITTER_PLUGIN_PATH', plugin_dir_path(__FILE__));
 define('GRITTER_PLUGIN_URL', plugin_dir_url(__FILE__));
 define('GRITTER_REQUIRED_WP_VERSION', '3.4.0');
@@ -695,27 +695,21 @@ if (!class_exists('gritter')) {
                 switch ($option) {
                     case 'group':
                         if (empty($id)) {
-                            if ($wpdb->insert($wpdb->prefix . 'gritter_group', $data)) {
-                                return true;
-                            }
+                            return $wpdb->insert($wpdb->prefix . 'gritter_group', $data);
                         } else {
-                            if ($wpdb->update($wpdb->prefix . 'gritter_group', $data, array('id' => $id))) {
-                                return true;
-                            }
+                            return $wpdb->update($wpdb->prefix . 'gritter_group', $data, array('id' => $id));
                         }
                         return true;
                         break;
 
                     case 'layer':
                         if (empty($id)) {
-                            if ($wpdb->insert($wpdb->prefix . 'gritter_layer', $data))
-                                return true;
+                            return $wpdb->insert($wpdb->prefix . 'gritter_layer', $data);
                         }
                         else {
-                            if ($wpdb->update($wpdb->prefix . 'gritter_layer', $data, array('id' => $id)))
-                                return true;
+                            return $wpdb->update($wpdb->prefix . 'gritter_layer', $data, array('id' => $id));
                         }
-                        breal;
+                        break;
 
                     default:
                         break;
