@@ -5,7 +5,6 @@ Tags: gritter layer admin social influence jquery
 Requires at least: 3.0.1
 Tested up to: 3.5
 Stable tag: 0.1
-Version: 0.11
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -78,6 +77,9 @@ This section describes how to install the plugin and get it working.
 The configuration of gritter is done static in the '/css/gritter.min.js' file.
 
 == Changelog ==
+
+= 0.11 =
+* Some bug fixes.
 
 = 0.1 =
 * First version

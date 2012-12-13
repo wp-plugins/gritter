@@ -11,7 +11,7 @@ define('GRITTER_VERSION', '0.11');
 define('GRITTER_PLUGIN_PATH', plugin_dir_path(__FILE__));
 define('GRITTER_PLUGIN_URL', plugin_dir_url(__FILE__));
 define('GRITTER_REQUIRED_WP_VERSION', '3.4.0');
-define('GRITTER_OPTION_NAME', 'gritter-plugin.settings');
+define('GRITTER_OPTION_NAME', 'gritter.settings');
 if (!class_exists('gritter')) {
 
     /**
@@ -364,7 +364,7 @@ if (!class_exists('gritter')) {
                 $data = $this->sanitize_post_data($_POST, 'group');
                 if ($this->setData($data, 'group')) {
                     $this->success = 'Neue Gruppe gespeichert!';
-                    $_SESSION['gritter-plugin.success'] = $this->success;
+                    $_SESSION['gritter.success'] = $this->success;
                 } else {
                     $_SESSION['gritter_error']->add('Erstellen', 'Fehler beim Erstellen.');
                 }
@@ -387,7 +387,7 @@ if (!class_exists('gritter')) {
                 $data = $this->sanitize_post_data($_POST);
                 if ($this->setData($data)) {
                     $this->success = 'Neuer Layer gespeichert!';
-                    $_SESSION['gritter-plugin.success'] = $this->success;
+                    $_SESSION['gritter.success'] = $this->success;
                 } else {
                     $_SESSION['gritter_error']->add('Erstellen', 'Fehler beim Erstellen.');
                 }
@@ -574,7 +574,7 @@ if (!class_exists('gritter')) {
                 $data = $this->sanitize_post_data($_POST, 'group');
                 if ($this->setData($data, 'group', $group_id)) {
                     $this->success = '&Auml;nderungen gespeichert!';
-                    $_SESSION['gritter-plugin.success'] = $this->success;
+                    $_SESSION['gritter.success'] = $this->success;
                 } else {
                     $_SESSION['gritter_error']->add('Erstellen', 'Fehler beim &Auml;ndern!');
                 }
@@ -607,7 +607,7 @@ if (!class_exists('gritter')) {
                 $data = $this->sanitize_post_data($_POST);
                 if ($this->setData($data, 'layer', $layer_id)) {
                     $this->success = '&Auml;nderungen gespeichert!';
-                    $_SESSION['gritter-plugin.success'] = $this->success;
+                    $_SESSION['gritter.success'] = $this->success;
                 } else {
                     $_SESSION['gritter_error']->add('Erstellen', 'Fehler beim &Auml;ndern!');
                 }
@@ -725,7 +725,7 @@ if (!class_exists('gritter')) {
                 if ($_POST['action'] == 'delete_group' && isset($_POST['group']) && is_array($_POST['group'])) {
                     if ($this->delete_bulk($_POST['group'], 'group')) {
                         $this->success = 'Gruppen wurden entfernt!';
-                        $_SESSION['gritter-plugin.success'] = $this->success;
+                        $_SESSION['gritter.success'] = $this->success;
                     } else {
                         $_SESSION['gritter_error']->add('Entfernen', 'Fehler beim L&ouml;schen!');
                     }
@@ -747,7 +747,7 @@ if (!class_exists('gritter')) {
                         if (isset($_GET['group']) && !empty($_GET['group'])) {
                             if ($this->delete_bulk(array($_GET['group']), 'group')) {
                                 $this->success = 'Gruppe wurden entfernt!';
-                                $_SESSION['gritter-plugin.success'] = $this->success;
+                                $_SESSION['gritter.success'] = $this->success;
                             } else {
                                 $_SESSION['gritter_error']->add('Entfernen', 'Fehler beim L&ouml;schen!');
                             }
@@ -771,11 +771,11 @@ if (!class_exists('gritter')) {
             );
             $this->__output_header('Gritter - Gruppen  <a class="add-new-h2" href="./options-general.php?page=gritter&plugin_page=groups&action=new">Erstellen</a> <a class="add-new-h2" href="./options-general.php?page=gritter">Zur&uuml;ck</a>', TRUE);
             if (!class_exists('Gritter_Plugin_Table')) {
-                require_once( GRITTER_PLUGIN_PATH . 'gritter-plugin-table.php' );
+                require_once( GRITTER_PLUGIN_PATH . 'gritter-table.php' );
             }
             //Prepare Table of elements
             if (!class_exists('Gritter_Plugin_Table')) {
-                require_once( GRITTER_PLUGIN_PATH . 'gritter-plugin-table.php' );
+                require_once( GRITTER_PLUGIN_PATH . 'gritter-table.php' );
             }
             $wp_list_table = new Gritter_Plugin_Table();
             $wp_list_table->setOption('group');
@@ -790,9 +790,9 @@ if (!class_exists('gritter')) {
 
             $wp_list_table->prepare_items();
 
-            if (isset($_SESSION['gritter-plugin.success'])) {
-                $this->success = $_SESSION['gritter-plugin.success'];
-                unset($_SESSION['gritter-plugin.success']);
+            if (isset($_SESSION['gritter.success'])) {
+                $this->success = $_SESSION['gritter.success'];
+                unset($_SESSION['gritter.success']);
             }
             echo $this->success_output($this->success);
             echo $this->error_output();
@@ -819,7 +819,7 @@ if (!class_exists('gritter')) {
 
                 if (update_option(GRITTER_OPTION_NAME, $option)) {
                     $this->success = 'Einstellungen gespeichert!';
-                    $_SESSION['gritter-plugin.success'] = $this->success;
+                    $_SESSION['gritter.success'] = $this->success;
                 } else {
                     $_SESSION['gritter_error']->add('Einstellungen', 'Fehler beim Speichern!');
                 }
@@ -896,7 +896,7 @@ if (!class_exists('gritter')) {
                 if ($_POST['action'] == 'delete_layer' && isset($_POST['layer']) && is_array($_POST['layer'])) {
                     if ($this->delete_bulk($_POST['layer'], 'layer')) {
                         $this->success = 'Layer wurden entfernt!';
-                        $_SESSION['gritter-plugin.success'] = $this->success;
+                        $_SESSION['gritter.success'] = $this->success;
                     } else {
                         $_SESSION['gritter_error']->add('Entfernen', 'Fehler beim L&ouml;schen!');
                     }
@@ -914,7 +914,7 @@ if (!class_exists('gritter')) {
                         if (isset($_GET['layer']) && !empty($_GET['layer'])) {
                             if ($this->delete_bulk(array($_GET['layer']), 'layer')) {
                                 $this->success = 'Layer wurden entfernt!';
-                                $_SESSION['gritter-plugin.success'] = $this->success;
+                                $_SESSION['gritter.success'] = $this->success;
                             } else {
                                 $_SESSION['gritter_error']->add('Entfernen', 'Fehler beim L&ouml;schen!');
                             }
@@ -925,7 +925,7 @@ if (!class_exists('gritter')) {
                 }
             }
             if (!class_exists('Gritter_Plugin_Table')) {
-                require_once( GRITTER_PLUGIN_PATH . 'gritter-plugin-table.php' );
+                require_once( GRITTER_PLUGIN_PATH . 'gritter-table.php' );
             }
             //Prepare Table of elements
             $wp_list_table = new Gritter_Plugin_Table();
@@ -940,9 +940,9 @@ if (!class_exists('gritter')) {
 
             $html_output = '';
 
-            if (isset($_SESSION['gritter-plugin.success'])) {
-                $this->success = $_SESSION['gritter-plugin.success'];
-                unset($_SESSION['gritter-plugin.success']);
+            if (isset($_SESSION['gritter.success'])) {
+                $this->success = $_SESSION['gritter.success'];
+                unset($_SESSION['gritter.success']);
             }
             echo $this->success_output($this->success);
             echo $this->error_output();
@@ -973,7 +973,7 @@ if (!class_exists('gritter')) {
             $option = 'active_plugins';
             $activated_plugins = get_option($option);
             foreach ($activated_plugins as $key => $value) {
-                if ($value == 'gritter/gritter-plugin.php') {
+                if ($value == 'gritter/gritter.php') {
                     unset($activated_plugins[$key]);
                 }
             }
@@ -1051,7 +1051,7 @@ if (!class_exists('gritter')) {
                 if (preg_match('~(\[CITY\])~', $value, $matches)) {
 //                    $tags = get_meta_tags('http://www.geobytes.com/IpLocator.htm?GetLocation&template=php3.txt&IpAddress=' . $_SERVER['REMOVE_ADDR']);
                     if (!class_exists('Gritter_Plugin_Cities')) {
-                        require_once( GRITTER_PLUGIN_PATH . 'gritter-plugin-cities.php' );
+                        require_once( GRITTER_PLUGIN_PATH . 'gritter-cities.php' );
                     }
                     $gritter_city = new Gritter_Plugin_Cities(true);
                     $value = str_replace($matches[0], $gritter_city->city, $value);
@@ -1069,10 +1069,10 @@ if (!class_exists('gritter')) {
                 $option['seed'] = date('Ymdh');
             }
             $seed = get_the_ID() . date($option['seed']);
-            if ((!isset($_SESSION['gritter-plugin.seed'])) || ($_SESSION['gritter-plugin.seed'] != $seed)) {
-                $_SESSION['gritter-plugin.seed'] = $seed;
+            if ((!isset($_SESSION['gritter.seed'])) || ($_SESSION['gritter.seed'] != $seed)) {
+                $_SESSION['gritter.seed'] = $seed;
             }
-            mt_srand($_SESSION['gritter-plugin.seed']);
+            mt_srand($_SESSION['gritter.seed']);
         }
 
         /**
