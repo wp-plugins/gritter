@@ -1,30 +1,31 @@
 <?php
-/*
-Plugin Name: Gritter Social Influence
-Plugin URI: http://www.jordan-code.de
-Description: Dieses Plugin stellt angepasste Gritter Funktionalitaeten bereit.
-Author: Felix Jordan
-Author URI: http://www.jordan-code.de
-Version: 0.11
-License: GPLv2 or later
-License URI: http://www.gnu.org/licenses/gpl-2.0.html
-*/
-/*
-This program is free software; you can redistribute it and/or
-modify it under the terms of the GNU General Public License
-as published by the Free Software Foundation; either version 2
-of the License, or (at your option) any later version.
 
-This program is distributed in the hope that it will be useful,
-but WITHOUT ANY WARRANTY; without even the implied warranty of
-MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-GNU General Public License for more details.
+/*
+  Plugin Name: Gritter Social Influence
+  Plugin URI: http://www.jordan-code.de
+  Description: Dieses Plugin stellt angepasste Gritter Funktionalitaeten bereit.
+  Author: Felix Jordan
+  Author URI: http://www.jordan-code.de
+  Version: 0.12
+  License: GPLv2 or later
+  License URI: http://www.gnu.org/licenses/gpl-2.0.html
+ */
+/*
+  This program is free software; you can redistribute it and/or
+  modify it under the terms of the GNU General Public License
+  as published by the Free Software Foundation; either version 2
+  of the License, or (at your option) any later version.
 
-You should have received a copy of the GNU General Public License
-along with this program; if not, write to the Free Software
-Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
-*/
-define('GRITTER_VERSION', '0.11');
+  This program is distributed in the hope that it will be useful,
+  but WITHOUT ANY WARRANTY; without even the implied warranty of
+  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+  GNU General Public License for more details.
+
+  You should have received a copy of the GNU General Public License
+  along with this program; if not, write to the Free Software
+  Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
+ */
+define('GRITTER_VERSION', '0.12');
 define('GRITTER_PLUGIN_PATH', plugin_dir_path(__FILE__));
 define('GRITTER_PLUGIN_URL', plugin_dir_url(__FILE__));
 define('GRITTER_REQUIRED_WP_VERSION', '3.4.0');
@@ -100,7 +101,7 @@ if (!class_exists('gritter')) {
         function load_custom_script() {
             wp_register_script('gritter', GRITTER_PLUGIN_URL . 'js' . '/' . 'gritter.min.js');
             wp_enqueue_script('gritter');
-            wp_register_style('gritter', GRITTER_PLUGIN_URL  . 'css' . '/' . 'jquery.gritter.css');
+            wp_register_style('gritter', GRITTER_PLUGIN_URL . 'css' . '/' . 'jquery.gritter.css');
             wp_enqueue_style('gritter');
         }
 
@@ -722,8 +723,7 @@ if (!class_exists('gritter')) {
                     case 'layer':
                         if (empty($id)) {
                             return $wpdb->insert($wpdb->prefix . 'gritter_layer', $data);
-                        }
-                        else {
+                        } else {
                             return $wpdb->update($wpdb->prefix . 'gritter_layer', $data, array('id' => $id));
                         }
                         break;
@@ -1014,6 +1014,22 @@ if (!class_exists('gritter')) {
         }
 
         /**
+         * Checks if a category logic is set.
+         * @param type $logic
+         * @return boolean
+         */
+        function checkNotInCategories($logic = null) {
+            if (!empty($logic)) {
+                $matches = false;
+                if (preg_match('~(categorynotin)+(#)+([0-9,])+(#)~', $logic, $matches)) {
+                    $categories = explode('#', $matches[0]);
+                    return $categories[1];
+                }
+            }
+            return false;
+        }
+
+        /**
          * Replace all shortcodes in value.
          * @param type $value
          * @return type $value
@@ -1125,7 +1141,18 @@ if (!class_exists('gritter')) {
                     $categories = explode(',', $category);
                     foreach ($categories as $cat) {
                         if (!in_category($cat)) {
-                            $to_unset[] = $key;
+                            if (array_search($cat, $to_unset) === FALSE)
+                                $to_unset[] = $key;
+                        }
+                    }
+                }
+                $category_not_in = $this->checkNotInCategories($item['logic']);
+                if ($category_not_in) {
+                    $categories_not_in = explode(',', $category_not_in);
+                    foreach ($categories_not_in as $cat_not_in) {
+                        if (in_category($cat_not_in)) {
+                            if (array_search($cat_not_in, $to_unset) === FALSE)
+                                $to_unset[] = $key;
                         }
                     }
                 }

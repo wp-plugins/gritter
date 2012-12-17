@@ -32,7 +32,8 @@ Settings you can set for groups:
                     - [single#921#] : Only displayed on post type single with id 921 (Only one id is possible yet.).
                     - [page] : Onlye displayed on post type page (if is_page() function returns true);
                     - [page#921#] : Only displayed on post type page with id 921 (Only one id is possible yet.).
-                    - [category#3,5,9,48#] : Displaye only on posts which are in these provided category ids.
+                    - [category#3,5,9,48#] : Display only on posts which are in these provided category ids.
+                    - [categorynotin#38#] : Display post not in categories defined here.
 'Random':   Define if a random couple of layer in these group displayed.
             Options (e.g.):
                     - -1 : No random, all layers are displayed.
@@ -80,6 +81,9 @@ This section describes how to install the plugin and get it working.
 The configuration of gritter is done static in the '/css/gritter.min.js' file.
 
 == Changelog ==
+
+= 0.12 =
+* Added the [categorynotin#ID#] shortcode for groups.
 
 = 0.11 =
 * Some bug fixes.
